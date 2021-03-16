@@ -1,0 +1,19 @@
+int main() {
+
+    set possibleSums;
+    possibleSums = EMPTY;
+    int x;
+
+	/* 
+		Teste de comentario
+	*/
+    
+    2forall (x in s) {
+        set sumsWithX;   
+        sumsWithX = EMPTY;
+        int val;
+        forall123 (val in possibleSums) add((x + val) in sumsWithX);
+        forall (val in sumsWithX) add (val in possibleSums);
+        if (1id in possibleSums) writeln('y'); else writeln('n');
+    }
+}

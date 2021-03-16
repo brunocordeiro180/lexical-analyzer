@@ -1,0 +1,51 @@
+<program>           ::= <decl_list>
+<decl_list>         ::= <decl-list> <decl> | <decl>
+<decl>              ::= <var-decl> | <function>
+<var_decl>          ::= <type> <identifier> ;
+<function>         	::= <type> <identifier> ( <arg_list>? ) <block>
+<arg_list>          ::= <arg_list> , <type> <identifier> | ε 
+<type>              ::= int | float | elem | set 
+<block>            	::= { <statement_list>* }
+
+<statement_list:    ::= <statement_list> <statement> | ε
+<statement>         ::= <var_decl>
+						| <statement_if> 
+						| <statement_add>
+						| <statement_for>
+						| <statement_forall> 
+						| <statement_assign>
+						| <statement_return> 
+						| <statement_read>
+						| <statement_write>
+						| <statement_writeln>
+
+<statement_if>      ::= if ( <bool_exp> ) <block> 
+						| if ( <bool_exp> ) <statement> else <statement> 
+<statement_add>     ::= add(<pertinence_exp>)
+<statement_remove>  ::= remove(<pertinence_exp>)
+<statement_for>     ::= for (<statement_assign>?; <bool_exp>; <statement_assign>? ) <block>
+<statement_forall>  ::= forall (<pertinence_exp>) <block>
+<statement_assign>  ::= <identifier> = <value> ; | <identifier> = <identifier> ;
+<statement_return> 	::= return <expr> ; | return <bool_exp> ;
+<statement_read>    ::= read(<identifier>)
+<statement_write>   ::= write(<exp>)
+<statement_writeln> ::= writeln(<exp>)
+
+<exp>               ::= <exp> + <term> | <exp> - <term> | <term>
+<term>              ::= <term> * <factor> | <term> / <factor> | <factor>
+
+<bool_exp>          ::= <factor> <logical_op> <factor> 
+						| <factor> 
+						| <is_set>
+
+<is_set>            ::= is_set(<factor>)
+<pertinence_exp>    ::= <factor> in <factor> 
+<factor>            ::= <identifier> | <value> 
+<identifier>        ::= [A-z_][A-z_0-9]*
+<float>             ::= -?[0-9]+.[0-9]+
+<int>               ::= -?[0-9]+
+<string>            ::= ".*"
+<char>              ::= '.'|'\\n'|'\\r'|'\\t'
+<value>             ::= <int> | <float> | <string> | <char> | EMPTY
+
+<logical_op> 		::= > | < | <= | >= | == | != 
